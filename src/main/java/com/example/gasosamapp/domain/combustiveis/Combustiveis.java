@@ -13,6 +13,8 @@ public class Combustiveis{
     private String nome;
     @Column(name="price")
     private Double preco;
+    @Column(name="active")
+    private Boolean ativo;
 
     public Combustiveis() {
     }
@@ -20,6 +22,7 @@ public class Combustiveis{
     public Combustiveis(RequestCombustivelDTO requestCombustivelDTO){
         this.nome = requestCombustivelDTO.nome();
         this.preco = requestCombustivelDTO.preco();
+        this.ativo = true;
     }
 
     public String getId() {
@@ -44,5 +47,13 @@ public class Combustiveis{
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 }

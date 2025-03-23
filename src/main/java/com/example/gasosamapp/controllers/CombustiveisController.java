@@ -20,7 +20,7 @@ public class CombustiveisController {
 
     @GetMapping
     public ResponseEntity getTodosCombustiveis(){
-        var todosCombustiveis = combustiveisRepository.findAll();
+        var todosCombustiveis = combustiveisRepository.findAllByAtivoTrue();
         return ResponseEntity.ok(todosCombustiveis);
     }
 
@@ -46,8 +46,15 @@ public class CombustiveisController {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity deletarCombustivel(@PathVariable String id){
-        combustiveisRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
+        Optional<Combustiveis> optionalCombustivel = combustiveisRepository.findById(id);
+        if (optionalCombustivel.isPresent()) {
+            Combustiveis combustivel = optionalCombustivel.get();
+            combustivel.setAtivo(false);
+            return ResponseEntity.ok(combustivel);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
