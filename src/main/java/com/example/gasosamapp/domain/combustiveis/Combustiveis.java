@@ -14,7 +14,10 @@ public class Combustiveis{
     @Column(name="price")
     private Double preco;
 
-    public Combustiveis(@org.jetbrains.annotations.NotNull RequestCombustivelDTO requestCombustivelDTO){
+    public Combustiveis() {
+    }
+
+    public Combustiveis(RequestCombustivelDTO requestCombustivelDTO){
         this.nome = requestCombustivelDTO.nome();
         this.preco = requestCombustivelDTO.preco();
     }
@@ -35,7 +38,7 @@ public class Combustiveis{
         this.nome = nome;
     }
 
-    public Number getPreco() {
+    public Double getPreco() {
         return preco;
     }
 

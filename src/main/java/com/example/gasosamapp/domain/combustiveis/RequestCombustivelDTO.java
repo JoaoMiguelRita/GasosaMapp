@@ -1,4 +1,7 @@
 package com.example.gasosamapp.domain.combustiveis;
 
-public record RequestCombustivelDTO(String nome, Double preco) {
+import jakarta.validation.constraints.NotBlank;
+import org.jetbrains.annotations.NotNull;
+
+public record RequestCombustivelDTO(String id, @NotBlank String nome, @NotNull Double preco) {
 }
