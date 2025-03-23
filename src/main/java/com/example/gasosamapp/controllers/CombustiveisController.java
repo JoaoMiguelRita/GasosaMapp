@@ -3,6 +3,7 @@ package com.example.gasosamapp.controllers;
 import com.example.gasosamapp.domain.combustiveis.Combustiveis;
 import com.example.gasosamapp.domain.combustiveis.CombustiveisRepository;
 import com.example.gasosamapp.domain.combustiveis.RequestCombustivelDTO;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class CombustiveisController {
             combustivel.setPreco(combustivelDTO.preco());
             return ResponseEntity.ok(combustivel);
         } else {
-            return ResponseEntity.notFound().build();
+            throw new EntityNotFoundException();
         }
     }
 
@@ -54,7 +55,7 @@ public class CombustiveisController {
             combustivel.setAtivo(false);
             return ResponseEntity.ok(combustivel);
         } else {
-            return ResponseEntity.notFound().build();
+            throw new EntityNotFoundException();
         }
     }
 }
